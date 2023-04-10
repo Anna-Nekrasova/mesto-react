@@ -1,7 +1,0 @@
-.popup__frame {
-    display: flex;
-    flex-direction: column;
-    align-self: center;
-    margin: 0 auto;
-    position: relative;
-}

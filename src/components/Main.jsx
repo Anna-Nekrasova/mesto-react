@@ -1,4 +1,6 @@
-function Main({onEditAvatar, onAddPlace, onEditProfile, userName, userDescription, userAvatar}) {
+import Card from './Card.jsx';
+
+function Main({ onEditAvatar, onAddPlace, onEditProfile, userName, userDescription, userAvatar, cards, onCardClick }) {
     return (
         <main className="content">
 
@@ -18,6 +20,19 @@ function Main({onEditAvatar, onAddPlace, onEditProfile, userName, userDescriptio
                 </div>
                 <button className="profile__add" type="button" onClick={onAddPlace}></button>
 
+            </section>
+
+            <section className="elements">
+                {cards.map((item) => 
+                    <Card 
+                        onCardClick={onCardClick}
+                        card={item}
+                        key={item._id}
+                        name={item.name}
+                        link={item.link}
+                        likes={item.likes}
+                    />
+                )}
             </section>
 
         </main>

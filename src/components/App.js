@@ -3,7 +3,6 @@ import React from 'react';
 import Header from './Header.jsx';
 import Main from './Main.jsx';
 import Footer from './Footer.jsx';
-import Card from './Card.jsx';
 import PopupWithForm from './PopupWithForm.jsx';
 import ImagePopup from './ImagePopup.jsx';
 import { api } from '../utils/Api.js';
@@ -13,7 +12,8 @@ function App() {
   const [isNewCardPopupOpen, setIsNewCardPopupOpen] = React.useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-
+  const [userInfo, setUserInfo] = React.useState({avatar:'', name:'', about:''})
+  const [cardInfo, setCardInfo] = React.useState([])
 
   function handleEditAvatarClick() {
     setIsAvatarPopupOpen(true);
@@ -37,9 +37,6 @@ function App() {
     setIsEditPopupOpen(false);
     setSelectedCard({});
   }
-
-  const [userInfo, setUserInfo] = React.useState({avatar:'', name:'', about:''})
-  const [cardInfo, setCardInfo] = React.useState([])
 
   React.useEffect(() => {
     api.getDataUserInfo()
@@ -69,12 +66,10 @@ function App() {
         userName={userInfo.name}
         userDescription={userInfo.about}
         userAvatar={userInfo.avatar}
-      />
-      <Footer />
-      <Card 
         cards={cardInfo}
         onCardClick={handleCardClick}
       />
+      <Footer />
 
       <PopupWithForm
         name="edit"

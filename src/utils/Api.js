@@ -70,7 +70,7 @@ export default class Api {
 
     deleteOrAddLikeCard(method, id) {
         return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-            method: method,
+            method: method ? 'DELETE' : 'PUT',
             headers: this._getHeaders(),
         })
             .then(this._checkStatus);

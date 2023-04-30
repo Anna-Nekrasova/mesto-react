@@ -16,7 +16,6 @@ function App() {
   const [isNewCardPopupOpen, setIsNewCardPopupOpen] = React.useState(false);
   const [isEditPopupOpen, setIsEditPopupOpen] = React.useState(false);
   const [selectedCard, setSelectedCard] = React.useState({});
-  //const [userInfo, setUserInfo] = React.useState({ avatar: '', name: '', about: '' });
   const [cardInfo, setCardInfo] = React.useState([]);
   const [currentUser, setCurrentUser] = React.useState({ avatar: '', name: '', about: '' });
 
@@ -57,9 +56,11 @@ function App() {
   function handleCardDelete(card) {
     api.deleteCard(card._id)
       .then(() => {
-        const newCard = cardInfo.filter((item) => item._id !== card._id);
-        setCardInfo(newCard);
+        setCardInfo((state) => state.filter((item) => item._id !== card._id));
       })
+      .catch((err) => {
+        console.log(`Ошибка: ${err}`);
+      });
   }
 
   function handleUpdateUser({ name, about }) {
